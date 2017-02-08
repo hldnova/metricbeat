@@ -1,0 +1,29 @@
+metricbeat.modules:
+- module: system
+  metricsets:
+    - cpu
+    - filesystem
+    - memory
+    - network
+    - process
+  enabled: true
+  period: 300
+  processes: ['.*']
+  cpu_ticks: false
+
+- module: docker
+  metricsets: ["cpu", "info", "memory", "network", "diskio", "container"]
+  hosts: ["unix:///var/run/dockerhost/docker.sock"]
+  enabled: true
+  period: 300
+
+output.logstash:
+  enabled: true
+  hosts:["localhost:5044]
+  index: metricbeat
+  
+#output.elasticsearch:
+#  hosts: ["localhost:9200"]
+#  template.name: "metricbeat"
+#  template.path: "metricbeat.template.json"
+#  template.overwrite: false
