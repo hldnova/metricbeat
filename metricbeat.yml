@@ -13,13 +13,16 @@ metricbeat.modules:
 
 - module: docker
   metricsets: ["cpu", "info", "memory", "network", "diskio", "container"]
+  # map volume: -v "/var/run/docker.sock:/var/run/dockerhost/docker.sock"
   hosts: ["unix:///var/run/dockerhost/docker.sock"]
   enabled: true
   period: 300
 
 output.logstash:
   enabled: true
-  hosts:["localhost:5044]
+  hosts: ["localhost:5044"]
+  # set env -e "LOGSTASH_HOSTS='"1.2.3.4:5044","4.5.6.7:5044"'
+  # hosts: [LOGSTASH_HOSTS]
   index: metricbeat
   
 #output.elasticsearch:
