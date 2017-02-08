@@ -1,5 +1,6 @@
 metricbeat.modules:
 - module: system
+  # to monitor container host, set --pid=host or --net=host when start this container
   metricsets:
     - cpu
     - filesystem
@@ -21,8 +22,6 @@ metricbeat.modules:
 output.logstash:
   enabled: true
   hosts: ["localhost:5044"]
-  # set env -e "LOGSTASH_HOSTS='"1.2.3.4:5044","4.5.6.7:5044"'
-  # hosts: [LOGSTASH_HOSTS]
   index: metricbeat
   
 #output.elasticsearch:
