@@ -18,4 +18,4 @@ WORKDIR /metricbeat
 ADD entrypoint.sh /metricbeat/entrypoint.sh
 
 ENTRYPOINT /metricbeat/entrypoint.sh
-CMD ["/metricbeat/metricbeat", "-e", "*", "/metricbeat/metricbeat.yml"]
+CMD ["/metricbeat/metricbeat", "-e", "-v", "-c", "/metricbeat/metricbeat.yml"]
