@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  metricbeat:
+    image: emccorp/docker-metricbeat:5.2.0
+    hostname: <your_hostname>
+    volumes:
+      - ./metricbeat.yml:/metricbeat/metricbeat.yml
